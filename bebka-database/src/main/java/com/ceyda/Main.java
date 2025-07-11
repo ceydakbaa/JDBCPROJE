@@ -39,6 +39,20 @@ preparedStatement.executeUpdate();
 }catch(Exception e){
     e.printStackTrace();
 }
+//resultset verileri listelemek için kullanılıyor. rs.next()ile sıra sıra dolaşacak.
+        String selectSQL="SELECT*FROM users";
+try{
+    Connection connection=DriverManager.getConnection(DataBaseConfig.DATABES_URL,DataBaseConfig.DATABASE_USERNAME,DataBaseConfig.DATABASE_PASSWORD);
+    PreparedStatement preparedStatement= connection.prepareStatement(selectSQL);
+    ResultSet resultSet= preparedStatement.executeQuery();
+
+    while (resultSet.next()){
+        System.out.println(resultSet.getString("name"));
+        System.out.println(resultSet.getString("email"));
+    }
+    }catch(Exception e){
+    e.printStackTrace();
+    }
 
 
 
