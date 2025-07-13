@@ -44,7 +44,7 @@ preparedStatement.executeUpdate();
 try{
     Connection connection=DriverManager.getConnection(DataBaseConfig.DATABES_URL,DataBaseConfig.DATABASE_USERNAME,DataBaseConfig.DATABASE_PASSWORD);
     PreparedStatement preparedStatement= connection.prepareStatement(selectSQL);
-    ResultSet resultSet= preparedStatement.executeQuery();
+   ResultSet resultSet= preparedStatement.executeQuery();
 
     while (resultSet.next()){
         System.out.println(resultSet.getString("name"));
@@ -53,6 +53,33 @@ try{
     }catch(Exception e){
     e.printStackTrace();
     }
+
+//Update İşlemi
+        String updateSQL="UPDATE users SET name=? WHERE id=?";
+try(Connection connection=DriverManager.getConnection(DataBaseConfig.DATABES_URL,DataBaseConfig.DATABASE_USERNAME,DataBaseConfig.DATABASE_PASSWORD);
+PreparedStatement preparedStatement= connection.prepareStatement(InsertSQL)){
+    preparedStatement.setString(1,"Elif");
+    preparedStatement.setString(2,"elif@gmail.com");
+    preparedStatement.executeUpdate();
+        System.out.println("Kayıt Başarıyla Güncellendi.");
+
+}catch(Exception e){
+    e.printStackTrace();
+}
+//Delete işlemi
+        String deleteSQL="DELETE FROM users WHERE id=?";
+try(Connection connection=DriverManager.getConnection(DataBaseConfig.DATABES_URL,DataBaseConfig.DATABASE_USERNAME,DataBaseConfig.DATABASE_PASSWORD);
+PreparedStatement preparedStatement=connection.prepareStatement(deleteSQL)){
+    preparedStatement.setInt(1,5);
+   int deleted= preparedStatement.executeUpdate();
+    if(deleted>0){
+        System.out.println("Kayıt Başarıyla Silindi.");
+    }else{
+        System.out.println("Kayıtlı Kullanıcı Bulunamadı.");
+    }
+} catch (Exception e) {
+   e.printStackTrace();
+}
 
 
 
