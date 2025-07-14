@@ -39,12 +39,8 @@ try(PreparedStatement preparedStatement=connection.prepareStatement(sql)){
 }
     }
 
-    @Override
-    public void findAll() {
 
-    }
-
-    public void findall(){
+    public void findAll(){
         String sql="SELECT*FROM userss";
         try(PreparedStatement preparedStatement=connection.prepareStatement(sql);
             ResultSet resultSet= preparedStatement.executeQuery()){

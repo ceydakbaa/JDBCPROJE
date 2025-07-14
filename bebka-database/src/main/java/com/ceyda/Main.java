@@ -23,7 +23,6 @@ public class Main {
  //              userDAO.createTable();
  //              User user=new User(1,"Ceyda",22);
  //                            userDAO.save(user);
-               System.out.println("Kayıtlı Kullanıcılar:");
                userDAO.findAll();
 
            } catch (Exception e) {
